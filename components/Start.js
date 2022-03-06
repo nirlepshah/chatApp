@@ -58,20 +58,30 @@ export default class Start extends React.Component {
                         <View style={styles.colorPicker}>
                             {/* Green color */}
                             <TouchableOpacity
+                                accessible={true}
+                                accessibilityLabel="Background color change"
+                                accessibilityHint="Lets you choose a green background color for the Chat Screen"
+                                accessibilityRole="button"
                                 style={styles.roundButton1}
                                 onPress={() => this.changeBgColor(this.colors.color1)}>
 
                             </TouchableOpacity>
                             {/* Wine color */}
                             <TouchableOpacity
-
+                                accessible={true}
+                                accessibilityLabel="Background color change"
+                                accessibilityHint="Lets you choose a wine background color for the Chat Screen"
+                                accessibilityRole="button"
                                 style={styles.roundButton2}
                                 onPress={() => this.changeBgColor(this.colors.color2)}>
 
                             </TouchableOpacity>
                             {/* Gray color */}
                             <TouchableOpacity
-
+                                accessible={true}
+                                accessibilityLabel="Background color change"
+                                accessibilityHint="Lets you choose a gray background color for the Chat Screen"
+                                accessibilityRole="button"
                                 style={styles.roundButton3}
                                 onPress={() => this.changeBgColor(this.colors.color3)}
                             >
@@ -79,7 +89,10 @@ export default class Start extends React.Component {
                             </TouchableOpacity>
                             {/* Ash color */}
                             <TouchableOpacity
-
+                                accessible={true}
+                                accessibilityLabel="Background color change"
+                                accessibilityHint="Lets you choose a ash background color for the Chat Screen"
+                                accessibilityRole="button"
                                 style={styles.roundButton4}
                                 onPress={() => this.changeBgColor(this.colors.color4)}>
 
