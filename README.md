@@ -14,7 +14,7 @@ chat interface and options to share images and their location.
 
 ## <b> Dependencies </b>
 
-"@react-native-async-storage/async-storage": "^1.16.1",
+```"@react-native-async-storage/async-storage": "^1.16.1",
 "@react-native-community/masked-view": "^0.1.11",
 "@react-native-community/netinfo": "^8.1.0",
 "@react-navigation/native": "^6.0.8",
@@ -36,10 +36,11 @@ chat interface and options to share images and their location.
 "react-native-screens": "~3.10.1",
 "react-native-web": "0.17.1",
 "react-navigation": "^4.4.4"
+```
 
 ## <b> Installation </b>
 
-○ Fork or download directly this repo. <br>
+○ git clone -b branch4 https://<span></span>github.com/nirlepshah/chatApp <br>
 ○ npm install or yarn install on the terminal to install all dependencies. <br>
 
 ## <b> How to use this app </b>
@@ -48,3 +49,10 @@ chat interface and options to share images and their location.
 ○ Install Expo globally npm install --global expo-cli.<br>
 ○ To start the app, run expo start or npm start.<br>
 ○ To run the app on a device, install an emulator or expo go on your smartphone<br>
+
+````
+
+```
+
+```
+````
