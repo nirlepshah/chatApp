@@ -49,10 +49,3 @@ chat interface and options to share images and their location.
 ○ Install Expo globally npm install --global expo-cli.<br>
 ○ To start the app, run expo start or npm start.<br>
 ○ To run the app on a device, install an emulator or expo go on your smartphone<br>
-
-````
-
-```
-
-```
-````
