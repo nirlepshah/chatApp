@@ -1,12 +1,14 @@
 import React from "react";
-import { Platform, KeyboardAvoidingView } from 'react-native';
+import { Platform, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { View, Text, Button } from 'react-native';
 import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat'
+import CustomActions from './CustomActions';
 import { initializeApp } from "firebase/app";
 const firebase = require('firebase');
 require('firebase/firestore');
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
+import MapView from 'react-native-maps';
 
 export default class Chat extends React.Component {
 
@@ -20,7 +22,10 @@ export default class Chat extends React.Component {
                 _id: "",
                 name: "",
                 avatar: "",
-            }
+            },
+            isConnected: false,
+            image: null,
+            location: null,
         }
         //firebase configuration info. 
         const firebaseConfig = {
@@ -132,7 +137,9 @@ export default class Chat extends React.Component {
                     _id: data.user._id,
                     name: data.user.name,
                     avatar: data.user.avatar
-                }
+                },
+                image: data.image || null,
+                location: data.location || null,
             });
         });
         this.setState({
@@ -144,10 +151,13 @@ export default class Chat extends React.Component {
         const message = this.state.messages[0];
         //function to add new message to the collection 
         this.referenceChatMessages.add({
+            uid: this.state.uid,
             _id: message._id,
-            text: message.text,
+            text: message.text || "",
             createdAt: message.createdAt,
-            user: this.state.user
+            user: this.state.user,
+            image: message.image || "",
+            location: message.location || null,
         });
     }
 
@@ -192,6 +202,34 @@ export default class Chat extends React.Component {
             );
         }
     }
+    //renderCustomActions function is responsible for creating the circle button
+    renderCustomActions = (props) => {
+        return <CustomActions {...props} />;
+    };
+    //return a MapView when surrentMessage contains location data
+    renderCustomView(props) {
+        const { currentMessage } = props;
+        if (currentMessage.location) {
+            return (
+                <MapView
+                    style={{
+                        width: 150,
+                        height: 100,
+                        borderRadius: 13,
+                        margin: 3
+                    }}
+                    region={{
+                        latitude: currentMessage.location.latitude,
+                        longitude: currentMessage.location.longitude,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421,
+                    }}
+                />
+            );
+        }
+        return null;
+    }
+
     render() {
         // Value received from the Start screen. Entered nams is displayed on the top 
         let name = this.props.route.params.name;
@@ -207,7 +245,8 @@ export default class Chat extends React.Component {
                     messages={this.state.messages}
                     onSend={messages => this.onSend(messages)}
                     renderInputToolbar={this.renderInputToolbar.bind(this)}
-
+                    renderActions={this.renderCustomActions}
+                    renderCustomView={this.renderCustomView}
                     user={{
                         _id: this.state.user._id,
                         name: this.state.name,
